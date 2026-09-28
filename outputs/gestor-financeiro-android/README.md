@@ -4,7 +4,7 @@ Aplicativo web instalável (PWA), pensado para Android. Ao ser instalado pelo Ch
 
 ## Instalação no Android
 
-O Chrome só oferece a instalação do app em um endereço seguro HTTPS. Publique esta pasta em um serviço Node.js com HTTPS habilitado, configure as variáveis indicadas abaixo e abra o endereço no Chrome do Android. No menu do Chrome, escolha **Instalar app** ou **Adicionar à tela inicial**. Autorize o microfone para comandos falados.
+O Chrome só oferece a instalação do app em um endereço seguro HTTPS. Publique esta pasta em um serviço Node.js com HTTPS habilitado, configure as variáveis indicadas abaixo e abra o endereço no Chrome do Android. No menu do Chrome, escolha **Instalar app** ou **Adicionar à tela inicial**. Autorize o microfone para comandos falados. O layout se reorganiza automaticamente quando o telefone gira para a horizontal.
 
 Para testar no computador, use `http://localhost:4173`.
 
@@ -12,7 +12,7 @@ Para testar no computador, use `http://localhost:4173`.
 
 O projeto Android está na pasta `android`. No Windows, dê dois cliques em `Build-Apk.cmd`. O script instala a plataforma Android 36 quando necessário, pede a aceitação das licenças do SDK, baixa o Gradle 9.6 e gera um APK de depuração assinado para instalação direta. O build usa Android Gradle Plugin 9.4, compatível com o Java 25 incluído no Android Studio atual. O arquivo será salvo em `android/app/build/outputs/apk/debug/app-debug.apk`; em caso de falha, o diagnóstico completo fica em `android-build.log`. O workflow `Android APK` também compila e publica o APK como artefato do GitHub Actions.
 
-No primeiro uso do APK, informe o endereço HTTPS do servidor publicado. O ícone de engrenagem no topo abre as configurações do servidor. O reconhecimento de voz usa o serviço de fala do Android e pede permissão de microfone quando necessário. O token do Airtable continua somente no servidor.
+No primeiro uso do APK, informe o endereço HTTPS do servidor publicado. Toque no indicador de conexão sob o nome do app para abrir as configurações do servidor novamente. O reconhecimento de voz usa o serviço de fala do Android e pede permissão de microfone quando necessário. O token do Airtable continua somente no servidor. A tecla Voltar fecha o app e remove a tarefa da tela de aplicativos recentes.
 
 ## Configuração do Airtable
 

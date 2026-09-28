@@ -9,16 +9,12 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.view.Gravity;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
@@ -27,15 +23,12 @@ import androidx.fragment.app.FragmentActivity;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MainActivity extends FragmentActivity {
     private static final int REQUEST_AUDIO = 41;
     private static final int REQUEST_VOICE = 42;
-    private static final String PREFS = "gestor_financeiro";
     private static final String SERVER_KEY = "server_url";
     private WebView webView;
-    private LinearLayout toolbar;
     private String serverUrl;
     private boolean authenticated;
     private boolean authenticationPromptVisible;
@@ -47,24 +40,6 @@ public class MainActivity extends FragmentActivity {
         window.setStatusBarColor(Color.rgb(49, 94, 67));
         window.setNavigationBarColor(Color.rgb(31, 50, 39));
         serverUrl = getPreferences(MODE_PRIVATE).getString(SERVER_KEY, "");
-
-        LinearLayout root = new LinearLayout(this);
-        root.setOrientation(LinearLayout.VERTICAL);
-        root.setBackgroundColor(Color.WHITE);
-        toolbar = new LinearLayout(this);
-        toolbar.setGravity(Gravity.CENTER_VERTICAL);
-        toolbar.setPadding(dp(16), 0, dp(8), 0);
-        toolbar.setBackgroundColor(Color.rgb(49, 94, 67));
-        toolbar.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
-        Button settings = new Button(this);
-        settings.setText("⚙");
-        settings.setTextColor(Color.WHITE);
-        settings.setBackgroundColor(Color.TRANSPARENT);
-        settings.setContentDescription("Configurações");
-        settings.setOnClickListener(v -> showServerDialog());
-        toolbar.addView(settings, new LinearLayout.LayoutParams(dp(56), dp(48)));
-        root.addView(toolbar);
-
         webView = new WebView(this);
         webView.setBackgroundColor(Color.WHITE);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -73,10 +48,10 @@ public class MainActivity extends FragmentActivity {
         webView.getSettings().setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_NEVER_ALLOW);
         webView.addJavascriptInterface(new VoiceBridge(), "AndroidVoice");
         webView.addJavascriptInterface(new ThemeBridge(), "AndroidTheme");
+        webView.addJavascriptInterface(new SettingsBridge(), "AndroidSettings");
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
-        root.addView(webView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
-        setContentView(root);
+        setContentView(webView);
 
         authenticateToOpen();
     }
@@ -102,7 +77,7 @@ public class MainActivity extends FragmentActivity {
                                 .setMessage("Use a biometria ou o bloqueio de tela do aparelho para abrir o app.")
                                 .setCancelable(false)
                                 .setPositiveButton("Tentar novamente", (dialog, which) -> authenticateToOpen())
-                                .setNegativeButton("Sair", (dialog, which) -> finish())
+                                .setNegativeButton("Sair", (dialog, which) -> finishAndRemoveTask())
                                 .show();
                     }
                 });
@@ -195,7 +170,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
         if (webView != null && webView.canGoBack()) webView.goBack();
-        else super.onBackPressed();
+        else finishAndRemoveTask();
     }
 
     private final class VoiceBridge {
@@ -209,12 +184,18 @@ public class MainActivity extends FragmentActivity {
         @JavascriptInterface
         public void setDark(boolean dark) {
             runOnUiThread(() -> {
-                int top = dark ? Color.rgb(24, 34, 27) : Color.rgb(49, 94, 67);
-                toolbar.setBackgroundColor(top);
+                int top = dark ? Color.rgb(16, 42, 86) : Color.rgb(49, 94, 67);
                 getWindow().setStatusBarColor(top);
-                getWindow().setNavigationBarColor(dark ? Color.rgb(17, 24, 19) : Color.rgb(31, 50, 39));
-                if (webView != null) webView.setBackgroundColor(dark ? Color.rgb(17, 24, 19) : Color.WHITE);
+                getWindow().setNavigationBarColor(dark ? Color.rgb(8, 19, 34) : Color.rgb(31, 50, 39));
+                if (webView != null) webView.setBackgroundColor(dark ? Color.rgb(8, 19, 34) : Color.WHITE);
             });
+        }
+    }
+
+    private final class SettingsBridge {
+        @JavascriptInterface
+        public void openServerSettings() {
+            runOnUiThread(MainActivity.this::showServerDialog);
         }
     }
 }
