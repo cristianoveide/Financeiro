@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.view.Window;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
@@ -24,6 +26,7 @@ import androidx.fragment.app.FragmentActivity;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends FragmentActivity {
     private static final int REQUEST_AUDIO = 41;
@@ -34,6 +37,8 @@ public class MainActivity extends FragmentActivity {
     private String serverUrl;
     private boolean authenticated;
     private boolean authenticationPromptVisible;
+    private TextToSpeech textToSpeech;
+    private boolean textToSpeechReady;
 
     @Override
     protected void onCreate(Bundle state) {
@@ -56,6 +61,27 @@ public class MainActivity extends FragmentActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
         setContentView(webView);
+
+        textToSpeech = new TextToSpeech(this, status -> {
+            if (status == TextToSpeech.SUCCESS && textToSpeech != null) {
+                int language = textToSpeech.setLanguage(new Locale("pt", "BR"));
+                textToSpeechReady = language != TextToSpeech.LANG_MISSING_DATA
+                        && language != TextToSpeech.LANG_NOT_SUPPORTED;
+                textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+                    @Override public void onStart(String utteranceId) { }
+                    @Override public void onDone(String utteranceId) {
+                        if ("confirmation".equals(utteranceId)) {
+                            sendJs("window.onNativeSpeechPromptFinished && window.onNativeSpeechPromptFinished()");
+                        }
+                    }
+                    @Override public void onError(String utteranceId) {
+                        if ("confirmation".equals(utteranceId)) {
+                            sendJs("window.onNativeSpeechPromptFinished && window.onNativeSpeechPromptFinished()");
+                        }
+                    }
+                });
+            }
+        });
 
         authenticateToOpen();
     }
@@ -187,6 +213,23 @@ public class MainActivity extends FragmentActivity {
         public void startSpeechRecognition() {
             runOnUiThread(MainActivity.this::startVoiceRecognition);
         }
+
+        @JavascriptInterface
+        public boolean speak(String text) {
+            if (!textToSpeechReady || textToSpeech == null) return false;
+            return textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, "confirmation")
+                    != TextToSpeech.ERROR;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+            textToSpeech = null;
+        }
+        super.onDestroy();
     }
 
     private final class ThemeBridge {
