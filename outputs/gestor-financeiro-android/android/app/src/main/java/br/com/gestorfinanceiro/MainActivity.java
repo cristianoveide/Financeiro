@@ -37,11 +37,11 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         Window window = getWindow();
-        window.setStatusBarColor(Color.rgb(49, 94, 67));
-        window.setNavigationBarColor(Color.rgb(31, 50, 39));
+        window.setStatusBarColor(Color.rgb(16, 42, 86));
+        window.setNavigationBarColor(Color.rgb(8, 19, 34));
         serverUrl = getPreferences(MODE_PRIVATE).getString(SERVER_KEY, "");
         webView = new WebView(this);
-        webView.setBackgroundColor(Color.WHITE);
+        webView.setBackgroundColor(Color.rgb(8, 19, 34));
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setAllowFileAccess(false);
@@ -189,10 +189,9 @@ public class MainActivity extends FragmentActivity {
         @JavascriptInterface
         public void setDark(boolean dark) {
             runOnUiThread(() -> {
-                int top = dark ? Color.rgb(16, 42, 86) : Color.rgb(49, 94, 67);
-                getWindow().setStatusBarColor(top);
-                getWindow().setNavigationBarColor(dark ? Color.rgb(8, 19, 34) : Color.rgb(31, 50, 39));
-                if (webView != null) webView.setBackgroundColor(dark ? Color.rgb(8, 19, 34) : Color.WHITE);
+                getWindow().setStatusBarColor(Color.rgb(16, 42, 86));
+                getWindow().setNavigationBarColor(Color.rgb(8, 19, 34));
+                if (webView != null) webView.setBackgroundColor(Color.rgb(8, 19, 34));
             });
         }
     }
@@ -204,3 +203,4 @@ public class MainActivity extends FragmentActivity {
         }
     }
 }
+

@@ -1,6 +1,6 @@
 # Gestor Financeiro para Android
 
-Aplicativo web instalável (PWA), pensado para Android. Ao ser instalado pelo Chrome, abre em tela cheia e tem ícone próprio. Inclui entrada por voz e texto, tema claro/escuro, consulta de lançamentos, categorias, contas e cartões, além de confirmação antes de gravação, correção ou exclusão. O APK Android solicita biometria ou a credencial de bloqueio do aparelho antes de abrir.
+Aplicativo web instalável (PWA), pensado para Android. Ao ser instalado pelo Chrome, abre em tela cheia e tem ícone próprio azul. Inclui entrada por voz e texto, interface somente em tema escuro, consulta de lançamentos, categorias, contas e cartões, além de confirmação antes de gravação, correção ou exclusão. O APK Android solicita biometria ou a credencial de bloqueio do aparelho antes de abrir, usando as cores escuras do app.
 
 ## Instalação no Android
 
@@ -31,3 +31,4 @@ Depois que o deploy terminar, copie o endereço HTTPS mostrado no serviço, abra
 Contas e cartões começam vazios, sem inventar dados bancários. O usuário pode cadastrá-los por comando, como “Cadastrar conta Nubank corrente” e “Cadastrar cartão Nubank crédito”. Para categorias novas, o app mantém o valor personalizado em campo próprio e deixa “Outros” na seleção padrão do Airtable.
 
 Parcelamentos guardam o valor total da compra, a quantidade de parcelas e a parcela atual; não geram automaticamente um registro futuro por mês. O reconhecimento de voz usa a fala do Chrome para transcrever em português e depende de conexão segura e permissão do microfone.
+
