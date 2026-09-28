@@ -15,6 +15,7 @@
     <section class="quick"><button data-command="Quais são minhas contas?">Contas</button><button data-command="Quais são meus cartões?">Cartões</button><button data-command="Quais são minhas categorias?">Categorias</button></section>
   </main>
   <nav class="bottom"><a class="selected" href="#home">⌂<small>Início</small></a><a href="#recent">↕<small>Lançamentos</small></a><a href="#command">＋<small>Novo</small></a></nav>
+  <div id="confirmationModal" class="confirmation-modal" hidden role="dialog" aria-modal="true" aria-labelledby="confirmationTitle"><div class="confirmation-card"><span class="confirmation-mark" aria-hidden="true">?</span><h2 id="confirmationTitle">Confirmar ação</h2><p id="confirmationText"></p><p id="confirmationHint">Vou ler a confirmação. Diga “confirmar” ou “cancelar”, ou toque em uma opção.</p><div class="modal-actions"><button id="confirmYes" type="button">Sim, confirmar</button><button id="confirmNo" type="button">Não, cancelar</button></div></div></div>
   <script src="/app.js" defer></script>
 </body>
 </html>
