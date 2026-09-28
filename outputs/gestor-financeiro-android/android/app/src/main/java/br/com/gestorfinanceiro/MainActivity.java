@@ -28,6 +28,7 @@ public class MainActivity extends FragmentActivity {
     private static final int REQUEST_AUDIO = 41;
     private static final int REQUEST_VOICE = 42;
     private static final String SERVER_KEY = "server_url";
+    private static final String DEFAULT_SERVER_URL = "https://gestor-financeiro-64a1.onrender.com";
     private WebView webView;
     private String serverUrl;
     private boolean authenticated;
@@ -39,7 +40,8 @@ public class MainActivity extends FragmentActivity {
         Window window = getWindow();
         window.setStatusBarColor(Color.rgb(16, 42, 86));
         window.setNavigationBarColor(Color.rgb(8, 19, 34));
-        serverUrl = getPreferences(MODE_PRIVATE).getString(SERVER_KEY, "");
+        serverUrl = getPreferences(MODE_PRIVATE).getString(SERVER_KEY, DEFAULT_SERVER_URL);
+        if (serverUrl.isEmpty()) serverUrl = DEFAULT_SERVER_URL;
         webView = new WebView(this);
         webView.setBackgroundColor(Color.rgb(8, 19, 34));
         webView.getSettings().setJavaScriptEnabled(true);
