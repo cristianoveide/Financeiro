@@ -18,6 +18,7 @@ import android.widget.EditText;
 
 import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import org.json.JSONObject;
@@ -38,6 +39,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         Window window = getWindow();
+        WindowCompat.setDecorFitsSystemWindows(window, true);
         window.setStatusBarColor(Color.rgb(16, 42, 86));
         window.setNavigationBarColor(Color.rgb(8, 19, 34));
         serverUrl = getPreferences(MODE_PRIVATE).getString(SERVER_KEY, DEFAULT_SERVER_URL);

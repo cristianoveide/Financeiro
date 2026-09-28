@@ -12,7 +12,7 @@ Para testar no computador, use `http://localhost:4173`.
 
 O projeto Android está na pasta `android`. No Windows, dê dois cliques em `Build-Apk.cmd`. O script instala a plataforma Android 36 quando necessário, pede a aceitação das licenças do SDK, baixa o Gradle 9.6 e gera um APK de depuração assinado para instalação direta. O build usa Android Gradle Plugin 9.4, compatível com o Java 25 incluído no Android Studio atual. O arquivo será salvo em `android/app/build/outputs/apk/debug/app-debug.apk`; em caso de falha, o diagnóstico completo fica em `android-build.log`. O workflow `Android APK` também compila e publica o APK como artefato do GitHub Actions.
 
-O APK já vem apontado para o servidor HTTPS do Gestor Financeiro. Toque no indicador de conexão sob o nome do app para abrir as configurações do servidor, se precisar trocar o endereço. O reconhecimento de voz usa o serviço de fala do Android e pede permissão de microfone quando necessário. O token do Airtable continua somente no servidor. A tecla Voltar fecha o app e remove a tarefa da tela de aplicativos recentes.
+O APK já vem apontado para o servidor HTTPS do Gestor Financeiro. Toque no indicador de conexão sob o nome do app para abrir as configurações do servidor, se precisar trocar o endereço. A tela respeita as barras de status e navegação do Android, e usa o ícone original redesenhado em azul. O reconhecimento de voz usa o serviço de fala do Android e pede permissão de microfone quando necessário. O token do Airtable continua somente no servidor. A tecla Voltar fecha o app e remove a tarefa da tela de aplicativos recentes.
 
 ## Configuração do Airtable
 
