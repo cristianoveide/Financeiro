@@ -20,6 +20,8 @@ const passwordHash = process.env.APP_PASSWORD_HASH;
 const passwordSalt = process.env.APP_PASSWORD_SALT;
 const sessionSecret = process.env.APP_SESSION_SECRET;
 const authConfigured = Boolean(passwordHash && passwordSalt && sessionSecret);
+const sessionDurationMs = 365 * 24 * 60 * 60 * 1000;
+const sessionDurationSeconds = Math.floor(sessionDurationMs / 1000);
 const port = Number(process.env.PORT || 4173);
 const host = process.env.HOST || (process.env.NODE_ENV === 'production' ? '0.0.0.0' : '127.0.0.1');
 const tables = { lancamentos: 'Lançamentos', categorias: 'Categorias', contas: 'Contas', cartoes: 'Cartões' };
@@ -93,10 +95,10 @@ const app = http.createServer(async (req, res) => {
         return respond(res, 401, { error: 'Senha incorreta.' });
       }
       loginFailures.delete(key);
-      const expires = String(now + 12 * 60 * 60_000);
+      const expires = String(now + sessionDurationMs);
       const cookieName = process.env.NODE_ENV === 'production' ? '__Host-finance_session' : 'finance_session';
       const secure = req.headers['x-forwarded-proto'] === 'https' || process.env.NODE_ENV === 'production' ? '; Secure' : '';
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'Set-Cookie': `${cookieName}=${expires}.${signature(expires)}; HttpOnly; SameSite=Strict; Path=/; Max-Age=43200${secure}` });
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'Set-Cookie': `${cookieName}=${expires}.${signature(expires)}; HttpOnly; SameSite=Strict; Path=/; Max-Age=${sessionDurationSeconds}${secure}` });
       return res.end(JSON.stringify({ ok: true }));
     }
     if (!isLoginPage && !isAuthenticated(req)) {
