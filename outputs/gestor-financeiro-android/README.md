@@ -1,6 +1,6 @@
 # Gestor Financeiro para Android
 
-Aplicativo web instalável (PWA), pensado para Android. Ao ser instalado pelo Chrome, abre em tela cheia e tem ícone próprio. Inclui entrada por voz e texto, consulta de lançamentos, categorias, contas e cartões, além de confirmação antes de gravação, correção ou exclusão.
+Aplicativo web instalável (PWA), pensado para Android. Ao ser instalado pelo Chrome, abre em tela cheia e tem ícone próprio. Inclui entrada por voz e texto, tema claro/escuro, consulta de lançamentos, categorias, contas e cartões, além de confirmação antes de gravação, correção ou exclusão. O APK Android solicita biometria ou a credencial de bloqueio do aparelho antes de abrir.
 
 ## Instalação no Android
 
@@ -10,9 +10,9 @@ Para testar no computador, use `http://localhost:4173`.
 
 ## Gerar o APK Android
 
-O projeto Android está na pasta `android`. No Windows, dê dois cliques em `Build-Apk.cmd`. O script instala a plataforma Android 36 quando necessário, pede a aceitação das licenças do SDK, baixa o Gradle 9.6 e gera um APK de depuração assinado para instalação direta. O build usa Android Gradle Plugin 9.4, compatível com o Java 25 incluído no Android Studio atual. O arquivo será salvo em `android/app/build/outputs/apk/debug/app-debug.apk`; em caso de falha, o diagnóstico completo fica em `android-build.log`.
+O projeto Android está na pasta `android`. No Windows, dê dois cliques em `Build-Apk.cmd`. O script instala a plataforma Android 36 quando necessário, pede a aceitação das licenças do SDK, baixa o Gradle 9.6 e gera um APK de depuração assinado para instalação direta. O build usa Android Gradle Plugin 9.4, compatível com o Java 25 incluído no Android Studio atual. O arquivo será salvo em `android/app/build/outputs/apk/debug/app-debug.apk`; em caso de falha, o diagnóstico completo fica em `android-build.log`. O workflow `Android APK` também compila e publica o APK como artefato do GitHub Actions.
 
-No primeiro uso do APK, informe o endereço HTTPS do servidor publicado. O botão **Servidor** permite alterar esse endereço depois. O reconhecimento de voz usa o serviço de fala do Android e pede permissão de microfone quando necessário. O token do Airtable continua somente no servidor.
+No primeiro uso do APK, informe o endereço HTTPS do servidor publicado. O ícone de engrenagem no topo abre as configurações do servidor. O reconhecimento de voz usa o serviço de fala do Android e pede permissão de microfone quando necessário. O token do Airtable continua somente no servidor.
 
 ## Configuração do Airtable
 

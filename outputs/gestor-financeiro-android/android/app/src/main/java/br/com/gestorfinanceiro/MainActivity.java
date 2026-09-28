@@ -1,7 +1,6 @@
 package br.com.gestorfinanceiro;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,20 +19,26 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
     private static final int REQUEST_AUDIO = 41;
     private static final int REQUEST_VOICE = 42;
     private static final String PREFS = "gestor_financeiro";
     private static final String SERVER_KEY = "server_url";
     private WebView webView;
+    private LinearLayout toolbar;
     private String serverUrl;
+    private boolean authenticated;
+    private boolean authenticationPromptVisible;
 
     @Override
     protected void onCreate(Bundle state) {
@@ -46,22 +51,18 @@ public class MainActivity extends Activity {
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
         root.setBackgroundColor(Color.WHITE);
-        LinearLayout toolbar = new LinearLayout(this);
+        toolbar = new LinearLayout(this);
         toolbar.setGravity(Gravity.CENTER_VERTICAL);
         toolbar.setPadding(dp(16), 0, dp(8), 0);
         toolbar.setBackgroundColor(Color.rgb(49, 94, 67));
-        TextView title = new TextView(this);
-        title.setText("Gestor Financeiro");
-        title.setTextColor(Color.WHITE);
-        title.setTextSize(18);
-        title.setTypeface(null, 1);
-        toolbar.addView(title, new LinearLayout.LayoutParams(0, dp(56), 1));
+        toolbar.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
         Button settings = new Button(this);
-        settings.setText("Servidor");
+        settings.setText("⚙");
         settings.setTextColor(Color.WHITE);
         settings.setBackgroundColor(Color.TRANSPARENT);
+        settings.setContentDescription("Configurações");
         settings.setOnClickListener(v -> showServerDialog());
-        toolbar.addView(settings, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, dp(48)));
+        toolbar.addView(settings, new LinearLayout.LayoutParams(dp(56), dp(48)));
         root.addView(toolbar);
 
         webView = new WebView(this);
@@ -71,13 +72,46 @@ public class MainActivity extends Activity {
         webView.getSettings().setAllowFileAccess(false);
         webView.getSettings().setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_NEVER_ALLOW);
         webView.addJavascriptInterface(new VoiceBridge(), "AndroidVoice");
+        webView.addJavascriptInterface(new ThemeBridge(), "AndroidTheme");
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
         root.addView(webView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1));
         setContentView(root);
 
-        if (serverUrl.isEmpty()) showServerDialog();
-        else webView.loadUrl(serverUrl);
+        authenticateToOpen();
+    }
+
+    private void authenticateToOpen() {
+        if (authenticationPromptVisible || authenticated) return;
+        authenticationPromptVisible = true;
+        BiometricPrompt prompt = new BiometricPrompt(this, ContextCompat.getMainExecutor(this),
+                new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                        authenticationPromptVisible = false;
+                        authenticated = true;
+                        if (serverUrl.isEmpty()) showServerDialog();
+                        else webView.loadUrl(serverUrl);
+                    }
+
+                    @Override
+                    public void onAuthenticationError(int errorCode, CharSequence errString) {
+                        authenticationPromptVisible = false;
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Autenticação necessária")
+                                .setMessage("Use a biometria ou o bloqueio de tela do aparelho para abrir o app.")
+                                .setCancelable(false)
+                                .setPositiveButton("Tentar novamente", (dialog, which) -> authenticateToOpen())
+                                .setNegativeButton("Sair", (dialog, which) -> finish())
+                                .show();
+                    }
+                });
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Desbloquear Gestor Financeiro")
+                .setSubtitle("Confirme sua identidade para abrir o app")
+                .setDeviceCredentialAllowed(true)
+                .build();
+        prompt.authenticate(promptInfo);
     }
 
     private int dp(int value) {
@@ -168,6 +202,19 @@ public class MainActivity extends Activity {
         @JavascriptInterface
         public void startSpeechRecognition() {
             runOnUiThread(MainActivity.this::startVoiceRecognition);
+        }
+    }
+
+    private final class ThemeBridge {
+        @JavascriptInterface
+        public void setDark(boolean dark) {
+            runOnUiThread(() -> {
+                int top = dark ? Color.rgb(24, 34, 27) : Color.rgb(49, 94, 67);
+                toolbar.setBackgroundColor(top);
+                getWindow().setStatusBarColor(top);
+                getWindow().setNavigationBarColor(dark ? Color.rgb(17, 24, 19) : Color.rgb(31, 50, 39));
+                if (webView != null) webView.setBackgroundColor(dark ? Color.rgb(17, 24, 19) : Color.WHITE);
+            });
         }
     }
 }
