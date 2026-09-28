@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#08172e">
+  <title>Acesso privado · Financeiro</title>
+  <style>
+    :root{color-scheme:dark;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:#08172e;color:#f2f6ff}
+    *{box-sizing:border-box}
+    body{min-height:100svh;margin:0;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 0%,#163b70 0%,#0b1e39 43%,#08172e 80%)}
+    main{width:min(100%,390px);padding:32px 28px 28px;border:1px solid #ffffff16;border-radius:24px;background:#0e203a;box-shadow:0 28px 80px #0007}
+    .mark{display:grid;place-items:center;width:54px;height:54px;border-radius:17px;background:#173f76;color:#8cb9ff;margin-bottom:24px}
+    .mark svg{width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    h1{font-size:24px;line-height:1.2;margin:0 0 8px;letter-spacing:-.35px}
+    p{font-size:14px;line-height:1.5;color:#a9b9d1;margin:0 0 25px}
+    label{display:block;font-size:13px;font-weight:600;margin:0 0 8px;color:#d8e4f6}
+    input{width:100%;height:52px;padding:0 15px;border:1px solid #304767;border-radius:12px;background:#09172b;color:#fff;font:inherit;outline:none}
+    input:focus{border-color:#64a5ff;box-shadow:0 0 0 3px #3984e433}
+    button{width:100%;height:52px;margin-top:16px;border:0;border-radius:12px;background:#2866b5;color:white;font:inherit;font-size:15px;font-weight:700;cursor:pointer}
+    button:disabled{opacity:.65;cursor:wait}
+    #error{min-height:20px;margin:12px 0 0;color:#ff9d9d;font-size:13px}
+    .foot{font-size:12px;color:#7f92ae;text-align:center;margin:12px 0 0}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/></svg></div>
+    <h1>Seu espaço financeiro</h1>
+    <p>Entre com sua senha para consultar e atualizar seus dados.</p>
+    <form id="login" autocomplete="on">
+      <label for="password">Senha de acesso</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required autofocus>
+      <button id="submit" type="submit">Entrar</button>
+      <div id="error" role="alert" aria-live="polite"></div>
+    </form>
+    <div class="foot">Acesso privado</div>
+  </main>
+  <script>
+    const form=document.querySelector('#login'),button=document.querySelector('#submit'),error=document.querySelector('#error');
+    form.addEventListener('submit',async event=>{event.preventDefault();button.disabled=true;button.textContent='Verificando…';error.textContent='';try{const response=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:form.password.value})});const result=await response.json();if(!response.ok)throw Error(result.error||'Não foi possível entrar.');location.replace('/');}catch(e){error.textContent=e.message;button.disabled=false;button.textContent='Entrar';}});
+  </script>
+</body>
+</html>
+
