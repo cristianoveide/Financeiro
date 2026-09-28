@@ -41,7 +41,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: gestor-financeiro-android-v1.7
+          name: gestor-financeiro-android-v1.8
           path: outputs/gestor-financeiro-android/android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
