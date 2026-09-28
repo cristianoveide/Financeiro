@@ -1,86 +1,206 @@
-YªçŠx-®éÜj×¢ëiºÚ+Š§j[h‘éÜ¢éíßM6N‹Z–‹­¦ëeŠw¬ÕÁ…­…”‰È¹½´¹•ÍÑ½É™¥¹…¹•¥É¼ì()¥µÁ½ÉĞ…¹‘É½¥¹5…¹¥™•ÍĞì)¥µÁ½ÉĞ…¹‘É½¥¹…ÁÀ¹±•ÉÑ¥…±½œì)¥µÁ½ÉĞ…¹‘É½¥¹½¹Ñ•¹Ğ¹%¹Ñ•¹Ğì)¥µÁ½ÉĞ…¹‘É½¥¹½¹Ñ•¹Ğ¹M¡…É•‘AÉ•™•É•¹•Ìì)¥µÁ½ÉĞ…¹‘É½¥¹½¹Ñ•¹Ğ¹Á´¹A…­…•5…¹…•Èì)¥µÁ½ÉĞ…¹‘É½¥¹É…Á¡¥Ì¹½±½Èì)¥µÁ½ÉĞ…¹‘É½¥¹¹•Ğ¹UÉ¤ì)¥µÁ½ÉĞ…¹‘É½¥¹½Ì¹	Õ¹‘±”ì)¥µÁ½ÉĞ…¹‘É½¥¹ÍÁ•• ¹I•½¹¥é•É%¹Ñ•¹Ğì)¥µÁ½ÉĞ…¹‘É½¥¹Ù¥•Ü¹]¥¹‘½Üì)¥µÁ½ÉĞ…¹‘É½¥¹İ•‰­¥Ğ¹)…Ù…ÍÉ¥ÁÑ%¹Ñ•É™…”ì)¥µÁ½ÉĞ…¹‘É½¥¹İ•‰­¥Ğ¹]•‰¡É½µ•±¥•¹Ğì)¥µÁ½ÉĞ…¹‘É½¥¹İ•‰­¥Ğ¹]•‰Y¥•Üì)¥µÁ½ÉĞ…¹‘É½¥¹İ•‰­¥Ğ¹]•‰Y¥•İ±¥•¹Ğì)¥µÁ½ÉĞ…¹‘É½¥¹İ¥‘•Ğ¹‘¥ÑQ•áĞì()¥µÁ½ÉĞ…¹‘É½¥‘à¹‰¥½µ•ÑÉ¥Œ¹	¥½µ•ÑÉ¥AÉ½µÁĞì)¥µÁ½ÉĞ…¹‘É½¥‘à¹½É”¹½¹Ñ•¹Ğ¹½¹Ñ•áÑ½µÁ…Ğì)¥µÁ½ÉĞ…¹‘É½¥‘à¹™É…µ•¹Ğ¹…ÁÀ¹É…µ•¹ÑÑ¥Ù¥Ñäì()¥µÁ½ÉĞ½Éœ¹©Í½¸¹)M=9=‰©•Ğì()¥µÁ½ÉĞ©…Ù„¹ÕÑ¥°¹ÉÉ…å1¥ÍĞì()ÁÕ‰±¥Œ±…ÍÌ5…¥¹Ñ¥Ù¥Ñä•áÑ•¹‘ÌÉ…µ•¹ÑÑ¥Ù¥Ñäì(€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ™¥¹…°¥¹ĞIEUMQ}U%<€ô€ĞÄì(€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ™¥¹…°¥¹ĞIEUMQ}Y=%€ô€ĞÈì(€€€ÁÉ¥Ù…Ñ”ÍÑ…Ñ¥Œ™¥¹…°MÑÉ¥¹œMIYI}-d€ô€‰Í•ÉÙ•É}ÕÉ°ˆì(€€€ÁÉ¥Ù…Ñ”]•‰Y¥•Üİ•‰Y¥•Üì(€€€ÁÉ¥Ù…Ñ”MÑÉ¥¹œÍ•ÉÙ•ÉUÉ°ì(€€€ÁÉ¥Ù…Ñ”‰½½±•…¸…ÕÑ¡•¹Ñ¥…Ñ•ì(€€€ÁÉ¥Ù…Ñ”‰½½±•…¸…ÕÑ¡•¹Ñ¥…Ñ¥½¹AÉ½µÁÑY¥Í¥‰±”ì((€€€=Ù•ÉÉ¥‘”(€€€ÁÉ½Ñ•Ñ•Ù½¥½¹É•…Ñ”¡	Õ¹‘±”ÍÑ…Ñ”¤ì(€€€€€€€ÍÕÁ•È¹½¹É•…Ñ”¡ÍÑ…Ñ”¤ì(€€€€€€€]¥¹‘½Üİ¥¹‘½Ü€ô•Ñ]¥¹‘½Ü ¤ì(€€€€€€€İ¥¹‘½Ü¹Í•ÑMÑ…ÑÕÍ	…É½±½È¡½±½È¹Éˆ Ğä°€äĞ°€ØÜ¤¤ì(€€€€€€€İ¥¹‘½Ü¹Í•Ñ9…Ù¥…Ñ¥½¹	…É½±½È¡½±½È¹Éˆ ÌÄ°€ÔÀ°€Ìä¤¤ì(€€€€€€€Í•ÉÙ•ÉUÉ°€ô•ÑAÉ•™•É•¹•Ì¡5=}AI%YQ¤¹•ÑMÑÉ¥¹œ¡MIYI}-d°€ˆˆ¤ì(€€€€€€€İ•‰Y¥•Ü€ô¹•Ü]•‰Y¥•Ü¡Ñ¡¥Ì¤ì(€€€€€€€İ•‰Y¥•Ü¹Í•Ñ	…­É½Õ¹‘½±½È¡½±½È¹]!%Q¤ì(€€€€€€€İ•‰Y¥•Ü¹•ÑM•ÑÑ¥¹Ì ¤¹Í•Ñ)…Ù…MÉ¥ÁÑ¹…‰±•¡ÑÉÕ”¤ì(€€€€€€€İ•‰Y¥•Ü¹•ÑM•ÑÑ¥¹Ì ¤¹Í•Ñ½µMÑ½É…•¹…‰±•¡ÑÉÕ”¤ì(€€€€€€€İ•‰Y¥•Ü¹•ÑM•ÑÑ¥¹Ì ¤¹Í•Ñ±±½İ¥±••ÍÌ¡™…±Í”¤ì(€€€€€€€İ•‰Y¥•Ü¹•ÑM•ÑÑ¥¹Ì ¤¹Í•Ñ5¥á•‘½¹Ñ•¹Ñ5½‘”¡…¹‘É½¥¹İ•‰­¥Ğ¹]•‰M•ÑÑ¥¹Ì¹5%a}=9Q9Q}9YI}11=\¤ì(€€€€€€€İ•‰Y¥•Ü¹…‘‘)…Ù…ÍÉ¥ÁÑ%¹Ñ•É™…”¡¹•ÜY½¥•	É¥‘” ¤°€‰¹‘É½¥‘Y½¥”ˆ¤ì(€€€€€€€İ•‰Y¥•Ü¹…‘‘)…Ù…ÍÉ¥ÁÑ%¹Ñ•É™…”¡¹•ÜQ¡•µ•	É¥‘” ¤°€‰¹‘É½¥‘Q¡•µ”ˆ¤ì(€€€€€€€İ•‰Y¥•Ü¹…‘‘)…Ù…ÍÉ¥ÁÑ%¹Ñ•É™…”¡¹•ÜM•ÑÑ¥¹Í	É¥‘” ¤°€‰¹‘É½¥‘M•ÑÑ¥¹Ìˆ¤ì(€€€€€€€İ•‰Y¥•Ü¹Í•Ñ]•‰Y¥•İ±¥•¹Ğ¡¹•Ü]•‰Y¥•İ±¥•¹Ğ ¤¤ì(€€€€€€€İ•‰Y¥•Ü¹Í•Ñ]•‰¡É½µ•±¥•¹Ğ¡¹•Ü]•‰¡É½µ•±¥•¹Ğ ¤¤ì(€€€€€€€Í•Ñ½¹Ñ•¹ÑY¥•Ü¡İ•‰Y¥•Ü¤ì((€€€€€€€…ÕÑ¡•¹Ñ¥…Ñ•Q½=Á•¸ ¤ì(€€€ô((€€€ÁÉ¥Ù…Ñ”Ù½¥…ÕÑ¡•¹Ñ¥…Ñ•Q½=Á•¸ ¤ì(€€€€€€€¥˜€¡…ÕÑ¡•¹Ñ¥…Ñ¥½¹AÉ½µÁÑY¥Í¥‰±”ñğ…ÕÑ¡•¹Ñ¥…Ñ•¤É•ÑÕÉ¸ì(€€€€€€€…ÕÑ¡•¹Ñ¥…Ñ¥½¹AÉ½µÁÑY¥Í¥‰±”€ôÑÉÕ”ì(€€€€€€€	¥½µ•ÑÉ¥AÉ½µÁĞÁÉ½µÁĞ€ô¹•Ü	¥½µ•ÑÉ¥AÉ½µÁĞ¡Ñ¡¥Ì°½¹Ñ•áÑ½µÁ…Ğ¹•Ñ5…¥¹á•ÕÑ½È¡Ñ¡¥Ì¤°(€€€€€€€€€€€€€€€¹•Ü	¥½µ•ÑÉ¥AÉ½µÁĞ¹ÕÑ¡•¹Ñ¥…Ñ¥½¹…±±‰…¬ ¤ì(€€€€€€€€€€€€€€€€€€€=Ù•ÉÉ¥‘”(€€€€€€€€€€€€€€€€€€€ÁÕ‰±¥ŒÙ½¥½¹ÕÑ¡•¹Ñ¥…Ñ¥½¹MÕ••‘•¡	¥½µ•ÑÉ¥AÉ½µÁĞ¹ÕÑ¡•¹Ñ¥…Ñ¥½¹I•ÍÕ±ĞÉ•ÍÕ±Ğ¤ì(€€€€€€€€€€€€€€€€€€€€€€€…ÕÑ¡•¹Ñ¥…Ñ¥½¹AÉ½µÁÑY¥Í¥‰±”€ô™…±Í”ì(€€€€€€€€€€€€€€€€€€€€€€€…ÕÑ¡•¹Ñ¥…Ñ•€ôÑÉÕ”ì(€€€€€€€€€€€€€€€€€€€€€€€¥˜€¡Í•ÉÙ•ÉUÉ°¹¥ÍµÁÑä ¤¤Í¡½İM•ÉÙ•É¥…±½œ ¤ì(€€€€€€€€€€€€€€€€€€€€€€€•±Í”İ•‰Y¥•Ü¹±½…‘UÉ°¡Í•ÉÙ•ÉUÉ°¤ì(€€€€€€€€€€€€€€€€€€€ô((€€€€€€€€€€€€€€€€€€€=Ù•ÉÉ¥‘”(€€€€€€€€€€€€€€€€€€€ÁÕ‰±¥ŒÙ½¥½¹ÕÑ¡•¹Ñ¥…Ñ¥½¹ÉÉ½È¡¥¹Ğ•ÉÉ½É½‘”°¡…ÉM•ÅÕ•¹”•ÉÉMÑÉ¥¹œ¤ì(€€€€€€€€€€€€€€€€€€€€€€€…ÕÑ¡•¹Ñ¥…Ñ¥½¹AÉ½µÁÑY¥Í¥‰±”€ô™…±Í”ì(€€€€€€€€€€€€€€€€€€€€€€€¹•Ü±•ÉÑ¥…±½œ¹	Õ¥±‘•È¡5…¥¹Ñ¥Ù¥Ñä¹Ñ¡¥Ì¤(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€¹Í•ÑQ¥Ñ±” ‰ÕÑ•¹Ñ¥‡Ÿ¼¹••ÍÏ…É¥„ˆ¤(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€¹Í•Ñ5•ÍÍ…” ‰UÍ”„‰¥½µ•ÑÉ¥„½Ô¼‰±½ÅÕ•¥¼‘”Ñ•±„‘¼…Á…É•±¡¼Á…É„…‰É¥È¼…ÁÀ¸ˆ¤(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€¹Í•Ñ…¹•±…‰±”¡™…±Í”¤(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€¹Í•ÑA½Í¥Ñ¥Ù•	ÕÑÑ½¸ ‰Q•¹Ñ…È¹½Ù…µ•¹Ñ”ˆ°€¡‘¥…±½œ°İ¡¥ ¤€´ø…ÕÑ¡•¹Ñ¥…Ñ•Q½=Á•¸ ¤¤(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€¹Í•Ñ9•…Ñ¥Ù•	ÕÑÑ½¸ ‰M…¥Èˆ°€¡‘¥…±½œ°İ¡¥ ¤€´ø±½Í•ÁÀ ¤¤(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€¹Í¡½Ü ¤ì(€€€€€€€€€€€€€€€€€€€ô(€€€€€€€€€€€€€€€ô¤ì(€€€€€€€	¥½µ•ÑÉ¥AÉ½µÁĞ¹AÉ½µÁÑ%¹™¼ÁÉ½µÁÑ%¹™¼€ô¹•Ü	¥½µ•ÑÉ¥AÉ½µÁĞ¹AÉ½µÁÑ%¹™¼¹	Õ¥±‘•È ¤(€€€€€€€€€€€€€€€€¹Í•ÑQ¥Ñ±” ‰•Í‰±½ÅÕ•…È•ÍÑ½È¥¹…¹•¥É¼ˆ¤(€€€€€€€€€€€€€€€€¹Í•ÑMÕ‰Ñ¥Ñ±” ‰½¹™¥Éµ”ÍÕ„¥‘•¹Ñ¥‘…‘”Á…É„…‰É¥È¼…ÁÀˆ¤(€€€€€€€€€€€€€€€€¹Í•Ñ•Ù¥•É•‘•¹Ñ¥…±±±½İ•¡ÑÉÕ”¤(€€€€€€€€€€€€€€€€¹‰Õ¥± ¤ì(€€€€€€€ÁÉ½µÁĞ¹…ÕÑ¡•¹Ñ¥…Ñ”¡ÁÉ½µÁÑ%¹™¼¤ì(€€€ô((€€€ÁÉ¥Ù…Ñ”¥¹Ğ‘À¡¥¹ĞÙ…±Õ”¤ì(€€€€€€€É•ÑÕÉ¸5…Ñ ¹É½Õ¹¡Ù…±Õ”€¨•ÑI•Í½ÕÉ•Ì ¤¹•Ñ¥ÍÁ±…å5•ÑÉ¥Ì ¤¹‘•¹Í¥Ñä¤ì(€€€ô((€€€ÁÉ¥Ù…Ñ”Ù½¥Í¡½İM•ÉÙ•É¥…±½œ ¤ì(€€€€€€€‘¥ÑQ•áĞ¥¹ÁÕĞ€ô¹•Ü‘¥ÑQ•áĞ¡Ñ¡¥Ì¤ì(€€€€€€€¥¹ÁÕĞ¹Í•ÑM¥¹±•1¥¹”¡ÑÉÕ”¤ì(€€€€€€€¥¹ÁÕĞ¹Í•Ñ%¹ÁÕÑQåÁ”¡…¹‘É½¥¹Ñ•áĞ¹%¹ÁÕÑQåÁ”¹QeA}1MM}QaPğ…¹‘É½¥¹Ñ•áĞ¹%¹ÁÕÑQåÁ”¹QeA}QaQ}YI%Q%=9}UI$¤ì(€€€€€€€¥¹ÁÕĞ¹Í•Ñ!¥¹Ğ ‰¡ÑÑÁÌè¼½Í•ÔµÍ•ÉÙ¥‘½È¹½´ˆ¤ì(€€€€€€€¥¹ÁÕĞ¹Í•ÑQ•áĞ¡Í•ÉÙ•ÉUÉ°¤ì(€€€€€€€¥¹ÁÕĞ¹Í•ÑA…‘‘¥¹œ¡‘À ÈÀ¤°‘À ÄÈ¤°‘À ÈÀ¤°‘À Çkh‘éì¶»§q«^vˆ[\X[ÙÈX[ÙÈH™]È[\X[ÙËZ[\Š\ÊBˆœÙ]]JÛÛ™Xİ\ˆ[ÈÙ]HÙ\İÜˆŠBˆœÙ]Y\ÜØYÙJ’[™›Ü›YHÈ[™\™péÛÈÈÛ™HÈÙ\İÜˆš[˜[˜ÙZ\›È\İ0èHX›XØYËˆŠBˆœÙ]šY]Ê[œ]
-BˆœÙ]ÜÚ]]™P]ÛŠÛÛ™Xİ\ˆ‹[
-BˆœÙ]™YØ]]™P]ÛŠÙ\™\•\›š\Ñ[\J
-HÈØ[˜Ù[\ˆˆˆ‘™XÚ\ˆ‹[
-Bˆ˜Ü™X]J
-NÂˆX[ÙËœÙ]Û”ÚİÓ\İ[™\Š[\ÙYOˆX[ÙË™Ù]]ÛŠ[\X[ÙË•UÓ—ÔÔÒUU‘JKœÙ]ÛÛXÚÓ\İ[™\ŠˆOˆÂˆİš[™È˜[YHH[œ]™Ù]^
+package br.com.gestorfinanceiro;
 
-KÔİš[™Ê
-Kš[J
-Kœ™\XÙP[
-‹ÊÉ‹ˆŠNÂˆ\šH\šHH\šKœ\œÙJ˜[YJNÂˆYˆ
-HšÈ‹™\]X[ÒYÛ›Ü™PØ\ÙJ\šK™Ù]ØÚ[YJ
-JH\šK™Ù]Üİ
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.view.Window;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.EditText;
 
-HOH[
-HÂˆ[œ]œÙ]\œ›ÜŠ•\ÙH[H[™\™péÛÈÈ°è[YÈŠNÂˆ™]\›ÂˆBˆÙ\™\•\›H˜[YNÂˆÙ]™Y™\™[˜Ù\ÊSÑWÔ’UUJK™Y]
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
-Kœ]İš[™ÊÑT•‘T—ÒÑVKÙ\™\•\›
-K˜\J
-NÂˆÙX•šY]Ë›ØY\›
-Ù\™\•\›
-NÂˆX[ÙË™\ÛZ\ÜÊ
-NÂˆJJNÂˆX[ÙËœÚİÊ
-NÂˆB‚ˆš]˜]H›ÚYİ\›ÚXÙT™XÛÙÛš][ÛŠ
-HÂˆYˆ
-ÚXÚÔÙ[”\›Z\ÜÚ[ÛŠX[šY™\İœ\›Z\ÜÚ[Û‹”‘PÓÔ‘ĞUQSÊHOHXÚØYÙSX[˜YÙ\‹”T“RTÔÒSÓ—ÑÔS•Q
-HÂˆ™\]Y\İ\›Z\ÜÚ[ÛœÊ™]Èİš[™Ö×^ÓX[šY™\İœ\›Z\ÜÚ[Û‹”‘PÓÔ‘ĞUQSßK‘TUQTÕĞUQSÊNÂˆ™]\›ÂˆBˆ[[[[H™]È[[
-™XÛÙÛš^™\’[[PÕSÓ—Ô‘PÓÑÓ’V‘WÔÔQPÒ
-NÂˆ[[œ]^˜J™XÛÙÛš^™\’[[‘VWÓS‘ÕPQÑWÓSÑS™XÛÙÛš^™\’[[“S‘ÕPQÑWÓSÑSÑ”‘QWÑ“Ô“JNÂˆ[[œ]^˜J™XÛÙÛš^™\’[[‘VWÓS‘ÕPQÑKœP”ˆŠNÂˆ[[œ]^˜J™XÛÙÛš^™\’[[‘VWÓS‘ÕPQÑWÔ‘Q‘T‘SÑKœP”ˆŠNÂˆ[[œ]^˜J™XÛÙÛš^™\’[[‘VWÔ“ÓT‘YØHÙ]HÛÛX[™Èš[˜[˜ÙZ\›ÈŠNÂˆHÂˆİ\Xİ]š]Q›Ü”™\İ[
-[[‘TUQTÕÕ“ÒPÑJNÂˆHØ]Ú
-^Ù\[ÛˆJHÂˆÙ[™œÊÚ[™İË›Û“˜]]™TÜYXÚ\œ›Üˆ	‰ˆÚ[™İË›Û“˜]]™TÜYXÚ\œ›ÜŠ
-HŠNÂˆBˆB‚ˆİ™\œšYBˆX›XÈ›ÚYÛ”™\]Y\İ\›Z\ÜÚ[ÛœÔ™\İ[
-[™\]Y\İÛÙKİš[™Ö×H\›Z\ÜÚ[ÛœË[×H™\İ[ÊHÂˆİ\\‹›Û”™\]Y\İ\›Z\ÜÚ[ÛœÔ™\İ[
-™\]Y\İÛÙK\›Z\ÜÚ[ÛœË™\İ[ÊNÂˆYˆ
-™\]Y\İÛÙHOH‘TUQTÕĞUQSÈ	‰ˆ™\İ[Ë›[™İˆ	‰ˆ™\İ[ÖÌHOHXÚØYÙSX[˜YÙ\‹”T“RTÔÒSÓ—ÑÔS•Q
-HÂˆİ\›ÚXÙT™XÛÙÛš][ÛŠ
-NÂˆH[ÙHYˆ
-™\]Y\İÛÙHOH‘TUQTÕĞUQSÊHÂˆÙ[™œÊÚ[™İË›Û“˜]]™TÜYXÚ\œ›Üˆ	‰ˆÚ[™İË›Û“˜]]™TÜYXÚ\œ›ÜŠ
-HŠNÂˆBˆB‚ˆİ™\œšYBˆ›İXİY›ÚYÛXİ]š]T™\İ[
-[™\]Y\İÛÙK[™\İ[ÛÙK[[]JHÂˆİ\\‹›ÛXİ]š]T™\İ[
-™\]Y\İÛÙK™\İ[ÛÙK]JNÂˆYˆ
-™\]Y\İÛÙHOH‘TUQTÕÕ“ÒPÑJH™]\›ÂˆYˆ
-™\İ[ÛÙHOH‘TÕSÓÒÈ	‰ˆ]HOH[
-HÂˆ\œ˜^S\İİš[™ÏˆX]Ú\ÈH]K™Ù]İš[™Ğ\œ˜^S\İ^˜J™XÛÙÛš^™\’[[‘VWÔ‘TÕSÊNÂˆYˆ
-X]Ú\ÈOH[	‰ˆ[X]Ú\Ëš\Ñ[\J
-JHÂˆÙ[™œÊÚ[™İË›Û“˜]]™TÜYXÚ™\İ[	‰ˆÚ[™İË›Û“˜]]™TÜYXÚ™\İ[
-ˆ
-È”ÓÓ“Øš™Xİœ][İJX]Ú\Ë™Ù]
-
-JH
-ÈŠHŠNÂˆ™]\›ÂˆBˆBˆÙ[™œÊÚ[™İË›Û“˜]]™TÜYXÚ\œ›Üˆ	‰ˆÚ[™İË›Û“˜]]™TÜYXÚ\œ›ÜŠ
-HŠNÂˆB‚ˆš]˜]H›ÚYÙ[™œÊİš[™ÈØÜš\
-HÂˆ[“Û•ZU™XY
+import org.json.JSONObject;
 
+import java.util.ArrayList;
 
-HOˆÈYˆ
-ÙX•šY]ÈOH[
-HÙX•šY]Ë™]˜[X]R˜]˜\ØÜš\
-ØÜš\[
-NÈJNÂˆB‚ˆİ™\œšYBˆX›XÈ›ÚYÛ˜XÚÔ™\ÜÙY
+public class MainActivity extends FragmentActivity {
+    private static final int REQUEST_AUDIO = 41;
+    private static final int REQUEST_VOICE = 42;
+    private static final String SERVER_KEY = "server_url";
+    private WebView webView;
+    private String serverUrl;
+    private boolean authenticated;
+    private boolean authenticationPromptVisible;
 
-HÂˆYˆ
-ÙX•šY]ÈOH[	‰ˆÙX•šY]Ë˜Ø[‘ÛĞ˜XÚÊ
-JHÙX•šY]Ë™ÛĞ˜XÚÊ
-NÂˆ[ÙHÛÜÙP\
+    @Override
+    protected void onCreate(Bundle state) {
+        super.onCreate(state);
+        Window window = getWindow();
+        window.setStatusBarColor(Color.rgb(49, 94, 67));
+        window.setNavigationBarColor(Color.rgb(31, 50, 39));
+        serverUrl = getPreferences(MODE_PRIVATE).getString(SERVER_KEY, "");
+        webView = new WebView(this);
+        webView.setBackgroundColor(Color.WHITE);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.getSettings().setAllowFileAccess(false);
+        webView.getSettings().setMixedContentMode(android.webkit.WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+        webView.addJavascriptInterface(new VoiceBridge(), "AndroidVoice");
+        webView.addJavascriptInterface(new ThemeBridge(), "AndroidTheme");
+        webView.addJavascriptInterface(new SettingsBridge(), "AndroidSettings");
+        webView.setWebViewClient(new WebViewClient());
+        webView.setWebChromeClient(new WebChromeClient());
+        setContentView(webView);
 
-NÂˆB‚ˆš]˜]H›ÚYÛÜÙP\
+        authenticateToOpen();
+    }
 
-HÂˆš[š\Ú[™™[[İ™U\ÚÊ
-NÂˆ[™›ÚY›ÜË”›ØÙ\ÜËšÚ[›ØÙ\ÜÊ[™›ÚY›ÜË”›ØÙ\ÜË›^TY
+    private void authenticateToOpen() {
+        if (authenticationPromptVisible || authenticated) return;
+        authenticationPromptVisible = true;
+        BiometricPrompt prompt = new BiometricPrompt(this, ContextCompat.getMainExecutor(this),
+                new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                        authenticationPromptVisible = false;
+                        authenticated = true;
+                        if (serverUrl.isEmpty()) showServerDialog();
+                        else webView.loadUrl(serverUrl);
+                    }
 
-JNÂˆB‚ˆš]˜]Hš[˜[Û\ÜÈ›ÚXÙPœšYÙHÂˆ˜]˜\ØÜš\[\™˜XÙBˆX›XÈ›ÚYİ\ÜYXÚ™XÛÙÛš][ÛŠ
-HÂˆ[“Û•ZU™XY
-XZ[Xİ]š]K\Îœİ\›ÚXÙT™XÛÙÛš][ÛŠNÂˆBˆB‚ˆš]˜]Hš[˜[Û\ÜÈ[YPœšYÙHÂˆ˜]˜\ØÜš\[\™˜XÙBˆX›XÈ›ÚYÙ]\šÊ›ÛÛX[ˆ\šÊHÂˆ[“Û•ZU™XY
+                    @Override
+                    public void onAuthenticationError(int errorCode, CharSequence errString) {
+                        authenticationPromptVisible = false;
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("AutenticaÃ§Ã£o necessÃ¡ria")
+                                .setMessage("Use a biometria ou o bloqueio de tela do aparelho para abrir o app.")
+                                .setCancelable(false)
+                                .setPositiveButton("Tentar novamente", (dialog, which) -> authenticateToOpen())
+                                .setNegativeButton("Sair", (dialog, which) -> closeApp())
+                                .show();
+                    }
+                });
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Desbloquear Gestor Financeiro")
+                .setSubtitle("Confirme sua identidade para abrir o app")
+                .setDeviceCredentialAllowed(true)
+                .build();
+        prompt.authenticate(promptInfo);
+    }
 
+    private int dp(int value) {
+        return Math.round(value * getResources().getDisplayMetrics().density);
+    }
 
-HOˆÂˆ[ÜH\šÈÈÛÛÜ‹œ™ØŠM‹‹ŠHˆÛÛÜ‹œ™ØŠKMÊNÂˆÙ]Ú[™İÊ
-KœÙ]İ]\Ğ˜\ÛÛÜŠÜ
-NÂˆÙ]Ú[™İÊ
-KœÙ]˜]šYØ][Û˜\ÛÛÜŠ\šÈÈÛÛÜ‹œ™ØŠNKÍ
-HˆÛÛÜ‹œ™ØŠÌKLÎJJNÂˆYˆ
-ÙX•šY]ÈOH[
-HÙX•šY]ËœÙ]˜XÚÙÜ›İ[™ÛÛÜŠ\šÈÈÛÛÜ‹œ™ØŠNKÍ
-HˆÛÛÜ‹•ÒUJNÂˆJNÂˆBˆB‚ˆš]˜]Hš[˜[Û\ÜÈÙ][™ÜĞœšYÙHÂˆ˜]˜\ØÜš\[\™˜XÙBˆX›XÈ›ÚYÜ[”Ù\™\”Ù][™ÜÊ
-HÂˆ[“Û•ZU™XY
-XZ[Xİ]š]K\ÎœÚİÔÙ\™\‘X[ÙÊNÂˆBˆBŸB
+    private void showServerDialog() {
+        EditText input = new EditText(this);
+        input.setSingleLine(true);
+        input.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_URI);
+        input.setHint("https://seu-servidor.com");
+        input.setText(serverUrl);
+        input.setPadding(dp(20), dp(12), dp(20), dp(12));
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Conectar ao seu gestor")
+                .setMessage("Informe o endereÃ§o HTTPS onde o Gestor Financeiro estÃ¡ publicado.")
+                .setView(input)
+                .setPositiveButton("Conectar", null)
+                .setNegativeButton(serverUrl.isEmpty() ? "Cancelar" : "Fechar", null)
+                .create();
+        dialog.setOnShowListener(unused -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            String value = input.getText().toString().trim().replaceAll("/+$", "");
+            Uri uri = Uri.parse(value);
+            if (!"https".equalsIgnoreCase(uri.getScheme()) || uri.getHost() == null) {
+                input.setError("Use um endereÃ§o HTTPS vÃ¡lido");
+                return;
+            }
+            serverUrl = value;
+            getPreferences(MODE_PRIVATE).edit().putString(SERVER_KEY, serverUrl).apply();
+            webView.loadUrl(serverUrl);
+            dialog.dismiss();
+        }));
+        dialog.show();
+    }
+
+    private void startVoiceRecognition() {
+        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_AUDIO);
+            return;
+        }
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "pt-BR");
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "pt-BR");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Diga seu comando financeiro");
+        try {
+            startActivityForResult(intent, REQUEST_VOICE);
+        } catch (Exception e) {
+            sendJs("window.onNativeSpeechError && window.onNativeSpeechError() ");
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] results) {
+        super.onRequestPermissionsResult(requestCode, permissions, results);
+        if (requestCode == REQUEST_AUDIO && results.length > 0 && results[0] == PackageManager.PERMISSION_GRANTED) {
+            startVoiceRecognition();
+        } else if (requestCode == REQUEST_AUDIO) {
+            sendJs("window.onNativeSpeechError && window.onNativeSpeechError() ");
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode != REQUEST_VOICE) return;
+        if (resultCode == RESULT_OK && data != null) {
+            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if (matches != null && !matches.isEmpty()) {
+                sendJs("window.onNativeSpeechResult && window.onNativeSpeechResult(" + JSONObject.quote(matches.get(0)) + ")");
+                return;
+            }
+        }
+        sendJs("window.onNativeSpeechError && window.onNativeSpeechError() ");
+    }
+
+    private void sendJs(String script) {
+        runOnUiThread(() -> { if (webView != null) webView.evaluateJavascript(script, null); });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webView != null && webView.canGoBack()) webView.goBack();
+        else closeApp();
+    }
+
+    private void closeApp() {
+        finishAndRemoveTask();
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+    private final class VoiceBridge {
+        @JavascriptInterface
+        public void startSpeechRecognition() {
+            runOnUiThread(MainActivity.this::startVoiceRecognition);
+        }
+    }
+
+    private final class ThemeBridge {
+        @JavascriptInterface
+        public void setDark(boolean dark) {
+            runOnUiThread(() -> {
+                int top = dark ? Color.rgb(16, 42, 86) : Color.rgb(49, 94, 67);
+                getWindow().setStatusBarColor(top);
+                getWindow().setNavigationBarColor(dark ? Color.rgb(8, 19, 34) : Color.rgb(31, 50, 39));
+                if (webView != null) webView.setBackgroundColor(dark ? Color.rgb(8, 19, 34) : Color.WHITE);
+            });
+        }
+    }
+
+    private final class SettingsBridge {
+        @JavascriptInterface
+        public void openServerSettings() {
+            runOnUiThread(MainActivity.this::showServerDialog);
+        }
+    }
+}
