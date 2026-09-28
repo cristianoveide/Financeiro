@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#315e43">
+  <meta name="description" content="Gestor financeiro com comandos por texto e voz."><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">
+  <title>Gestor Financeiro</title>
+</head>
+<body>
+  <header class="top"><img src="/icon.svg" alt="" width="40" height="40"><div class="brand"><b>Gestor Financeiro</b><small id="status">Conectando ao Airtable…</small></div><button id="install" class="install" hidden>Instalar</button><button id="refresh" class="refresh" title="Atualizar">↻</button></header>
+  <main>
+    <section class="welcome"><p id="date"></p><h1>Suas finanças,<br><span>em ordem.</span></h1><p>Registre falando ou escrevendo.</p></section>
+    <section class="cards"><article class="balance"><small>Saldo deste mês</small><b id="balance">R$ 0,00</b><div><span>Entradas</span><strong id="income">R$ 0,00</strong></div><div><span>Saídas</span><strong id="expense">R$ 0,00</strong></div></article></section>
+    <section class="composer"><label for="command">O que aconteceu?</label><div class="entry"><textarea id="command" rows="2" placeholder="Ex.: Gastei R$ 42,50 no almoço…"></textarea><button id="mic" class="mic" aria-label="Falar um comando">🎙</button></div><div class="entry-footer"><small id="voiceHint">Toque no microfone ou escreva um comando.</small><button id="send" class="send">Enviar <span>→</span></button></div><div id="message" class="message" hidden></div><div class="examples"><button>Recebi 3 mil reais de salário</button><button>Quanto gastei este mês?</button><button>Gastei 85 reais no almoço no Pix</button></div></section>
+    <section class="transactions"><div class="section-head"><h2>Recentes</h2><button id="showAll">Ver todos</button></div><div id="recent"><p class="empty">Seus lançamentos vão aparecer aqui.</p></div><div id="all" hidden></div></section>
+    <section class="quick"><button data-command="Quais são minhas contas?">Contas</button><button data-command="Quais são meus cartões?">Cartões</button><button data-command="Quais são minhas categorias?">Categorias</button></section>
+  </main>
+  <nav class="bottom"><a class="selected" href="#home">⌂<small>Início</small></a><a href="#recent">↕<small>Lançamentos</small></a><a href="#command">＋<small>Novo</small></a></nav>
+  <script src="/app.js" defer></script>
+</body>
+</html>

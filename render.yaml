@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: gestor-financeiro
+    runtime: node
+    rootDir: outputs/gestor-financeiro-android
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/status
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: AIRTABLE_BASE_ID
+        value: appj4RydYWjdUuD5o
+      - key: AIRTABLE_TOKEN
+        sync: false

@@ -1,0 +1,11 @@
+{
+  "name": "gestor-financeiro-android",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}
