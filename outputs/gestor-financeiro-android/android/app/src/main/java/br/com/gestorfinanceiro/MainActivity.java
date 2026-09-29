@@ -143,7 +143,20 @@ public class MainActivity extends FragmentActivity {
         @JavascriptInterface public String load() { return localDb.read(); }
         @JavascriptInterface public boolean save(String json) { try { localDb.write(json); if (driveUri() != null) enqueueDriveBackup(MainActivity.this, 2); return true; } catch (Exception e) { return false; } }
         @JavascriptInterface public String driveStatus() { return driveSyncPrefs().getString("status", driveUri() == null ? "DISCONNECTED" : "PENDING"); }
-        @JavascriptInterface public void checkDriveOnStart() { if (driveUri() != null) enqueueDriveBackup(MainActivity.this, 0); }
+        @JavascriptInterface public void checkDriveOnStart() {
+            if (driveUri() != null) {
+                enqueueDriveBackup(MainActivity.this, 0);
+                return;
+            }
+            android.content.SharedPreferences prefs = driveSyncPrefs();
+            if (!prefs.getBoolean("first_drive_prompt_shown", false)) {
+                prefs.edit().putBoolean("first_drive_prompt_shown", true).apply();
+                runOnUiThread(() -> {
+                    Toast.makeText(MainActivity.this, "Entre na sua conta Google para conectar o Drive e ativar o backup automático.", Toast.LENGTH_LONG).show();
+                    if (webView != null) webView.postDelayed(MainActivity.this::pickDriveFolder, 500);
+                });
+            }
+        }
         @JavascriptInterface public void openDriveSettings() { runOnUiThread(MainActivity.this::connectOrSyncDrive); }
         @JavascriptInterface public void resolveDriveConflict(boolean useDriveCopy) {
             driveSyncPrefs().edit().putString("resolution", useDriveCopy ? "drive" : "phone").putString("status", "PENDING").apply();
@@ -190,7 +203,8 @@ public class MainActivity extends FragmentActivity {
     private void pickDriveFolder() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-        startActivityForResult(intent, REQUEST_DRIVE_TREE);
+        try { startActivityForResult(intent, REQUEST_DRIVE_TREE); }
+        catch (Exception e) { Toast.makeText(this, "Não encontrei o seletor de documentos. Instale/ative o Google Drive e tente novamente.", Toast.LENGTH_LONG).show(); }
     }
     private void pickDriveFile() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);

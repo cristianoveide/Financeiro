@@ -1,12 +1,12 @@
 # Gestor Financeiro
 
-O APK Android guarda os dados no SQLite privado do telefone e sincroniza automaticamente um backup no Google Drive. Toque no indicador do topo para entrar na conta Google e ativar a cópia automática. O seletor Android pede que escolha uma pasta do Drive; o app cria e atualiza nela o arquivo `gestor-financeiro-backup.json` sem controles manuais de importação ou exportação.
+O APK Android guarda os dados no SQLite privado do telefone e sincroniza automaticamente um backup no Google Drive. Na primeira abertura, depois de desbloquear o app, o seletor do Drive é aberto para entrar na conta Google (se necessário) e escolher uma pasta. O app cria e atualiza nela o arquivo `gestor-financeiro-backup.json` sem controles manuais de importação ou exportação.
 
-O app confere a versão do Drive ao abrir, envia cada alteração quando há conexão e preserva as duas cópias quando detecta alterações simultâneas incompatíveis. A sincronização aguarda conexão quando o telefone está offline.
+O app confere a versão do Drive ao abrir, envia cada alteração quando há conexão e preserva as duas cópias quando detecta alterações simultâneas incompatíveis. A sincronização aguarda conexão quando o telefone está offline. Se a conexão inicial for cancelada, toque no indicador do topo para tentar novamente.
 
 ## Google Drive
 
-A primeira conexão abre o provedor de documentos do Google Drive para autenticar a conta, se necessário, e autorizar o acesso à pasta escolhida. Depois disso, o app localiza ou cria o arquivo de backup automaticamente nessa pasta. Em outro aparelho, conecte a mesma conta e escolha a pasta que contém o backup para restaurar/sincronizar os dados.
+A conexão usa o provedor de documentos Android, que conduz o login Google quando não há uma sessão ativa e concede acesso persistente à pasta autorizada. Depois disso, o app localiza ou cria o arquivo de backup automaticamente nessa pasta. Em outro aparelho, conecte a mesma conta e escolha a pasta que contém o backup para restaurar/sincronizar os dados.
 
 ## Gerar o APK
 
