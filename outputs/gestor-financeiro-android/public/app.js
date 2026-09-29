@@ -48,3 +48,12 @@ if(window.AndroidVoice){window.onNativeSpeechResult=voiceResult;window.onNativeS
 setTheme();updateHideValuesButton();
  const now=new Date();$('#date').textContent=now.toLocaleDateString('pt-BR',{weekday:'long',day:'numeric',month:'long'});refresh();setInterval(updateDriveStatus,3000);if('serviceWorker'in navigator)navigator.serviceWorker.register('/sw.js');window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('#install').hidden=false;});$('#install').onclick=async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$('#install').hidden=true;};
 
+
+function readBiometricRequirement(){if(window.LocalFinanceiro?.isBiometricRequired)return window.LocalFinanceiro.isBiometricRequired();return localStorage.getItem('gestor_financeiro_biometric_required')!=='false';}
+function updateBiometricSetting(){const enabled=readBiometricRequirement();$('#biometricRequired').checked=enabled;$('#biometricHelp').textContent=enabled?'O Android também aceita o PIN, padrão ou senha de bloqueio do aparelho.':'O app abrirá sem pedir biometria ou bloqueio de tela.';}
+$('#settingsButton').onclick=()=>{updateBiometricSetting();$('#settingsDialog').hidden=false;$('#closeSettings').focus();};
+$('#closeSettings').onclick=()=>{$('#settingsDialog').hidden=true;$('#settingsButton').focus();};
+$('#settingsDialog').addEventListener('click',event=>{if(event.target===$('#settingsDialog'))$('#closeSettings').click();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!$('#settingsDialog').hidden)$('#closeSettings').click();});
+$('#biometricRequired').onchange=event=>{const enabled=event.target.checked;localStorage.setItem('gestor_financeiro_biometric_required',String(enabled));if(window.LocalFinanceiro?.setBiometricRequired)window.LocalFinanceiro.setBiometricRequired(enabled);updateBiometricSetting();};
+
