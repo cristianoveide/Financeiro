@@ -1,15 +1,9 @@
-# Gestor Financeiro Offline para Android
+# Gestor Financeiro Android
 
-Na primeira abertura, depois de desbloquear o app, o seletor de documentos abre para entrar na conta Google (se necessário) e escolher uma pasta do Drive. O app cria e atualiza automaticamente nessa pasta `gestor-financeiro-backup.json`; a interface não oferece importação nem exportação manual. Se o login ou a escolha da pasta forem cancelados, toque no indicador do topo para tentar de novo.
+Na primeira abertura, após desbloquear o app, o Android mostra a tela oficial de login/autorização do Google. Confirme a conta e conceda acesso ao Drive. O app não pede nem recebe sua senha, não mostra seletor de pasta e armazena `gestor-financeiro-backup.json` na área privada do app no Drive (`appDataFolder`), oculta da lista normal de arquivos.
 
-Cada alteração é sincronizada quando há conexão. Ao abrir, o app confere se a cópia do Drive mudou e restaura se ela for a única versão alterada. Se telefone e Drive tiverem alterações diferentes, o app preserva ambas e pede qual manter. Em outro aparelho, conecte a mesma conta Google e escolha a pasta que contém o arquivo para sincronizar.
+Cada alteração é sincronizada automaticamente quando há conexão. Ao iniciar, o app confere se existe uma cópia mais nova no Drive e restaura quando for seguro. Se telefone e Drive tiverem alterações diferentes, preserva ambas e pergunta qual manter. Toque no indicador do topo para entrar de novo ou renovar a autorização.
 
-## Voz e segurança
+## Configuração OAuth necessária
 
-O app solicita processamento de voz offline quando suportado pelo serviço instalado e pelo pacote de português baixado. A biometria ou credencial de tela é solicitada ao abrir. O banco fica no armazenamento privado do app. O acesso ao Drive usa o provedor de documentos Android após autorização da pasta pelo usuário.
-
-## Gerar o APK
-
-Execute `Build-Apk.cmd` no Windows com Android Studio instalado. O APK de depuração é salvo em `android/app/build/outputs/apk/debug/app-debug.apk`. O GitHub Actions também compila e publica o APK como artefato.
-
-Os componentes antigos `server.mjs`, `render.yaml` e integração Airtable continuam no repositório, mas o APK local não depende deles.
+O projeto Google Cloud usado para distribuir o APK precisa ter a Google Drive API ativada, a tela de consentimento OAuth configurada e um cliente OAuth Android com o pacote `br.com.gestorfinanceiro` e o SHA-1 do certificado de assinatura correspondente. O artefato gerado pelo workflow é de depuração e usa certificado temporário; configure o cliente para a assinatura de produção antes de distribuir. Sem essa configuração, o APK compila, mas não consegue autenticar nem sincronizar.
