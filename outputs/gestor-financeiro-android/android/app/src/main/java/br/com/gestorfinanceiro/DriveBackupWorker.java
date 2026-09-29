@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import androidx.annotation.NonNull;
+import androidx.documentfile.provider.DocumentFile;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 import java.io.ByteArrayOutputStream;
@@ -16,17 +17,27 @@ import org.json.JSONObject;
 
 public final class DriveBackupWorker extends Worker {
     private static final String PREFS = "drive_backup";
+    private static final String BACKUP_FILE_NAME = "gestor-financeiro-backup.json";
     private static final String[] TABLES = {"lancamentos", "categorias", "contas", "cartoes"};
 
     public DriveBackupWorker(@NonNull Context context, @NonNull WorkerParameters params) { super(context, params); }
 
     @NonNull @Override public Result doWork() {
         SharedPreferences prefs = getApplicationContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-        String uriText = prefs.getString("uri", "");
+        String treeUriText = prefs.getString("tree_uri", "");
+        String uriText = treeUriText.isEmpty() ? prefs.getString("uri", "") : treeUriText;
         if (uriText.isEmpty()) return Result.success();
         Uri uri = Uri.parse(uriText);
         prefs.edit().putString("status", "CHECKING").apply();
         try (MainActivity.LocalDb db = new MainActivity.LocalDb(getApplicationContext())) {
+            if (!treeUriText.isEmpty()) {
+                DocumentFile folder = DocumentFile.fromTreeUri(getApplicationContext(), uri);
+                if (folder == null || !folder.canRead() || !folder.canWrite()) throw new SecurityException("A pasta do Drive não está mais acessível.");
+                DocumentFile backup = folder.findFile(BACKUP_FILE_NAME);
+                if (backup == null) backup = folder.createFile("application/json", BACKUP_FILE_NAME);
+                if (backup == null) throw new IllegalStateException("Não foi possível criar o arquivo de backup na pasta do Drive.");
+                uri = backup.getUri();
+            }
             String localRaw = db.read();
             String localHash = sha256(localRaw);
             String remoteRaw = readRemote(uri);

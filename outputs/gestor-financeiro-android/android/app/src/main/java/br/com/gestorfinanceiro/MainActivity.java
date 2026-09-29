@@ -27,9 +27,6 @@ import androidx.work.ExistingWorkPolicy;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import org.json.JSONObject;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -37,15 +34,12 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends FragmentActivity {
     private static final int REQUEST_AUDIO = 41;
     private static final int REQUEST_VOICE = 42;
-    private static final int REQUEST_IMPORT = 43;
-    private static final int REQUEST_EXPORT = 44;
-    private static final int REQUEST_DRIVE_OPEN = 45;
-    private static final int REQUEST_DRIVE_CREATE = 46;
+    private static final int REQUEST_DRIVE_TREE = 45;
+    private static final int REQUEST_DRIVE_OPEN = 46;
     private WebView webView;
     private boolean authenticated, authenticationPromptVisible, textToSpeechReady;
     private TextToSpeech textToSpeech;
     private LocalDb localDb;
-    private String exportContents;
 
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state);
@@ -123,31 +117,20 @@ public class MainActivity extends FragmentActivity {
 
     @Override protected void onActivityResult(int code, int result, Intent intent) {
         super.onActivityResult(code, result, intent);
-        if (code == REQUEST_DRIVE_OPEN || code == REQUEST_DRIVE_CREATE) {
+        if (code == REQUEST_DRIVE_TREE) {
+            if (result == RESULT_OK && intent != null && intent.getData() != null) connectDriveFolder(intent.getData(), intent.getFlags());
+            return;
+        }
+        if (code == REQUEST_DRIVE_OPEN) {
             if (result == RESULT_OK && intent != null && intent.getData() != null) connectDriveFile(intent.getData(), intent.getFlags());
             return;
         }
         if (result != RESULT_OK || intent == null) return;
-        Uri uri = intent.getData();
         try {
             if (code == REQUEST_VOICE) {
                 ArrayList<String> matches = intent.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                 if (matches != null && !matches.isEmpty()) { sendJs("window.onNativeSpeechResult && window.onNativeSpeechResult(" + JSONObject.quote(matches.get(0)) + ")"); return; }
                 sendJs("window.onNativeSpeechError && window.onNativeSpeechError()");
-            } else if (code == REQUEST_IMPORT && uri != null) {
-                StringBuilder contents = new StringBuilder();
-                try (InputStream input = getContentResolver().openInputStream(uri)) {
-                    if (input == null) throw new IllegalStateException("Não foi possível abrir o arquivo.");
-                    byte[] buffer = new byte[8192]; int n; while ((n = input.read(buffer)) != -1) contents.append(new String(buffer, 0, n, StandardCharsets.UTF_8));
-                }
-                String name = uri.getLastPathSegment() == null ? "importacao.json" : uri.getLastPathSegment();
-                sendJs("window.onNativeImportFile && window.onNativeImportFile(" + JSONObject.quote(name) + "," + JSONObject.quote(contents.toString()) + ")");
-            } else if (code == REQUEST_EXPORT && uri != null && exportContents != null) {
-                try (OutputStream output = getContentResolver().openOutputStream(uri)) {
-                    if (output == null) throw new IllegalStateException("Não foi possível criar o backup.");
-                    output.write(exportContents.getBytes(StandardCharsets.UTF_8));
-                }
-                Toast.makeText(this, "Backup exportado.", Toast.LENGTH_LONG).show(); exportContents = null;
             }
         } catch (Exception e) { Toast.makeText(this, "Falha ao transferir arquivo: " + e.getMessage(), Toast.LENGTH_LONG).show(); }
     }
@@ -161,26 +144,20 @@ public class MainActivity extends FragmentActivity {
         @JavascriptInterface public boolean save(String json) { try { localDb.write(json); if (driveUri() != null) enqueueDriveBackup(MainActivity.this, 2); return true; } catch (Exception e) { return false; } }
         @JavascriptInterface public String driveStatus() { return driveSyncPrefs().getString("status", driveUri() == null ? "DISCONNECTED" : "PENDING"); }
         @JavascriptInterface public void checkDriveOnStart() { if (driveUri() != null) enqueueDriveBackup(MainActivity.this, 0); }
-        @JavascriptInterface public void openDriveSettings() { runOnUiThread(MainActivity.this::showDriveDialog); }
+        @JavascriptInterface public void openDriveSettings() { runOnUiThread(MainActivity.this::connectOrSyncDrive); }
         @JavascriptInterface public void resolveDriveConflict(boolean useDriveCopy) {
             driveSyncPrefs().edit().putString("resolution", useDriveCopy ? "drive" : "phone").putString("status", "PENDING").apply();
             enqueueDriveBackup(MainActivity.this, 0);
         }
-        @JavascriptInterface public void openImport() {
-            runOnUiThread(() -> { Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT); i.setType("*/*"); i.putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"text/csv", "application/json", "text/plain"}); i.addCategory(Intent.CATEGORY_OPENABLE); startActivityForResult(i, REQUEST_IMPORT); });
-        }
-        @JavascriptInterface public void exportFile(String json) {
-            runOnUiThread(() -> { exportContents = json; Intent i = new Intent(Intent.ACTION_CREATE_DOCUMENT); i.setType("application/json"); i.putExtra(Intent.EXTRA_TITLE, "gestor-financeiro-backup.json"); i.addCategory(Intent.CATEGORY_OPENABLE); startActivityForResult(i, REQUEST_EXPORT); });
-        }
     }
     private android.content.SharedPreferences driveSyncPrefs() { return getSharedPreferences("drive_backup", MODE_PRIVATE); }
     private Uri driveUri() {
-        String saved = driveSyncPrefs().getString("uri", "");
+        String saved = driveSyncPrefs().getString("tree_uri", driveSyncPrefs().getString("uri", ""));
         return saved.isEmpty() ? null : Uri.parse(saved);
     }
     private static void enqueueDriveBackup(android.content.Context context, long delaySeconds) {
         android.content.SharedPreferences prefs = context.getSharedPreferences("drive_backup", MODE_PRIVATE);
-        if (prefs.getString("uri", "").isEmpty()) return;
+        if (prefs.getString("tree_uri", prefs.getString("uri", "")).isEmpty()) return;
         prefs.edit().putString("status", "PENDING").apply();
         androidx.work.Constraints constraints = new androidx.work.Constraints.Builder()
             .setRequiredNetworkType(androidx.work.NetworkType.CONNECTED).build();
@@ -189,9 +166,8 @@ public class MainActivity extends FragmentActivity {
             .setBackoffCriteria(androidx.work.BackoffPolicy.EXPONENTIAL, 30, TimeUnit.SECONDS).build();
         WorkManager.getInstance(context).enqueueUniqueWork("financeiro-drive-backup", ExistingWorkPolicy.APPEND_OR_REPLACE, request);
     }
-    private void showDriveDialog() {
-        boolean connected = driveUri() != null;
-        String status = driveSyncPrefs().getString("status", connected ? "PENDING" : "DISCONNECTED");
+    private void connectOrSyncDrive() {
+        String status = driveSyncPrefs().getString("status", driveUri() == null ? "DISCONNECTED" : "PENDING");
         if ("CONFLICT".equals(status)) {
             new AlertDialog.Builder(this).setTitle("Conflito entre as cópias")
                 .setMessage("O telefone e o Google Drive foram alterados desde a última sincronização. Ambas as cópias foram preservadas. Qual deseja manter como principal?")
@@ -199,24 +175,40 @@ public class MainActivity extends FragmentActivity {
                 .setNegativeButton("Manter telefone", (d, w) -> resolveDriveConflict(false)).show();
             return;
         }
-        String[] options = connected
-            ? new String[]{"Sincronizar agora", "Trocar arquivo de backup", "Desconectar Drive"}
-            : new String[]{"Selecionar backup existente", "Criar arquivo de backup no Drive"};
-        new AlertDialog.Builder(this).setTitle("Backup automático no Google Drive")
-            .setMessage(connected ? "O app verifica este arquivo ao abrir e salva nele as alterações quando há conexão. Situação: " + status : "Escolha Google Drive no seletor do Android. O vínculo é feito uma vez; o app continua funcionando offline.")
-            .setItems(options, (d, which) -> {
-                if (connected && which == 0) enqueueDriveBackup(this, 0);
-                else if (connected && which == 1) pickDriveFile(false);
-                else if (connected) disconnectDrive();
-                else pickDriveFile(which == 1);
-            }).setNegativeButton("Fechar", null).show();
+        if (driveUri() == null) {
+            Toast.makeText(this, "Entre na conta Google no seletor do Drive e escolha a pasta para o backup automático.", Toast.LENGTH_LONG).show();
+            pickDriveFolder();
+            return;
+        }
+        if ("ERROR_PERMISSION".equals(status)) {
+            if (!driveSyncPrefs().getString("tree_uri", "").isEmpty()) pickDriveFolder();
+            else pickDriveFile();
+            return;
+        }
+        Toast.makeText(this, "Drive conectado. A sincronização acontece automaticamente.", Toast.LENGTH_SHORT).show();
     }
-    private void pickDriveFile(boolean create) {
-        Intent intent = new Intent(create ? Intent.ACTION_CREATE_DOCUMENT : Intent.ACTION_OPEN_DOCUMENT);
+    private void pickDriveFolder() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+        startActivityForResult(intent, REQUEST_DRIVE_TREE);
+    }
+    private void pickDriveFile() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("application/json"); intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
-        if (create) { intent.putExtra(Intent.EXTRA_TITLE, "Gestor Financeiro backup.json"); startActivityForResult(intent, REQUEST_DRIVE_CREATE); }
-        else startActivityForResult(intent, REQUEST_DRIVE_OPEN);
+        startActivityForResult(intent, REQUEST_DRIVE_OPEN);
+    }
+    private void connectDriveFolder(Uri uri, int resultFlags) {
+        int flags = resultFlags & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        if ((flags & Intent.FLAG_GRANT_READ_URI_PERMISSION) == 0 || (flags & Intent.FLAG_GRANT_WRITE_URI_PERMISSION) == 0) {
+            Toast.makeText(this, "Escolha uma pasta do Drive com acesso de leitura e gravação.", Toast.LENGTH_LONG).show(); return;
+        }
+        try {
+            getContentResolver().takePersistableUriPermission(uri, flags);
+            driveSyncPrefs().edit().putString("tree_uri", uri.toString()).remove("uri").remove("base_hash").remove("resolution").putString("status", "PENDING").apply();
+            enqueueDriveBackup(this, 0);
+            Toast.makeText(this, "Google Drive conectado. Criando/verificando o backup…", Toast.LENGTH_LONG).show();
+        } catch (Exception e) { Toast.makeText(this, "Não consegui manter o acesso a essa pasta do Drive. Escolha outra pasta.", Toast.LENGTH_LONG).show(); }
     }
     private void connectDriveFile(Uri uri, int resultFlags) {
         int flags = resultFlags & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
@@ -225,18 +217,10 @@ public class MainActivity extends FragmentActivity {
         }
         try {
             getContentResolver().takePersistableUriPermission(uri, flags);
-            driveSyncPrefs().edit().putString("uri", uri.toString()).remove("base_hash").remove("resolution").putString("status", "PENDING").apply();
+            driveSyncPrefs().edit().putString("uri", uri.toString()).remove("tree_uri").remove("base_hash").remove("resolution").putString("status", "PENDING").apply();
             enqueueDriveBackup(this, 0);
             Toast.makeText(this, "Drive conectado. Verificando o backup…", Toast.LENGTH_LONG).show();
         } catch (Exception e) { Toast.makeText(this, "Não consegui manter o acesso a este arquivo. Escolha outro arquivo do Drive.", Toast.LENGTH_LONG).show(); }
-    }
-    private void disconnectDrive() {
-        Uri old = driveUri();
-        if (old != null) {
-            try { getContentResolver().releasePersistableUriPermission(old, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION); }
-            catch (Exception ignored) { }
-        }
-        driveSyncPrefs().edit().remove("uri").remove("base_hash").remove("resolution").putString("status", "DISCONNECTED").apply();
     }
     private void resolveDriveConflict(boolean useDriveCopy) {
         driveSyncPrefs().edit().putString("resolution", useDriveCopy ? "drive" : "phone").putString("status", "PENDING").apply();
