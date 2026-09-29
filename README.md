@@ -1,6 +1,10 @@
 # Gestor Financeiro
 
-O APK Android em `outputs/gestor-financeiro-android/android` funciona localmente, sem Render, Airtable ou permissão de internet. Lançamentos, categorias, contas e cartões são guardados numa base SQLite privada do app no telefone. A versão mantém a interface escura azul, biometria, comandos por voz/texto, consultas e confirmação para gravações, correções e exclusões.
+O APK Android em `outputs/gestor-financeiro-android/android` funciona localmente sem Render ou Airtable. Lançamentos, categorias, contas e cartões são guardados numa base SQLite privada do telefone. Tema azul escuro, biometria, voz/texto, consultas e confirmações continuam disponíveis offline. Como opção, o app salva um arquivo de backup no Google Drive pelo seletor de documentos Android.
+
+## Backup automático no Google Drive
+
+Na primeira vez, toque no indicador de backup e selecione um arquivo JSON existente no Google Drive ou crie um novo arquivo lá. O Android concede acesso persistente apenas a esse arquivo. Depois, cada alteração agenda um backup automático; se o telefone estiver offline, o envio aguarda conexão. Ao abrir o app, ele compara o arquivo do Drive com a última versão sincronizada e restaura a cópia remota se ela for a única que mudou. Se as duas cópias tiverem mudanças diferentes, preserva ambas e pede para escolher qual manter. O Drive é opcional e o app segue operando no telefone sem conexão.
 
 ## Migrar uma cópia dos dados do Airtable
 

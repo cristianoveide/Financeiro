@@ -10,13 +10,14 @@ android {
         applicationId 'br.com.gestorfinanceiro'
         minSdk 23
         targetSdk 35
-        versionCode 12
-        versionName '2.1'
+        versionCode 13
+        versionName '2.2'
     }
 }
 
 dependencies {
     implementation 'androidx.core:core:1.15.0'
     implementation 'androidx.biometric:biometric:1.1.0'
+    implementation 'androidx.work:work-runtime:2.12.0'
 }
 

@@ -23,18 +23,24 @@ import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
 import androidx.fragment.app.FragmentActivity;
+import androidx.work.ExistingWorkPolicy;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 import org.json.JSONObject;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends FragmentActivity {
     private static final int REQUEST_AUDIO = 41;
     private static final int REQUEST_VOICE = 42;
     private static final int REQUEST_IMPORT = 43;
     private static final int REQUEST_EXPORT = 44;
+    private static final int REQUEST_DRIVE_OPEN = 45;
+    private static final int REQUEST_DRIVE_CREATE = 46;
     private WebView webView;
     private boolean authenticated, authenticationPromptVisible, textToSpeechReady;
     private TextToSpeech textToSpeech;
@@ -46,7 +52,7 @@ public class MainActivity extends FragmentActivity {
         WindowCompat.setDecorFitsSystemWindows(getWindow(), true);
         getWindow().setStatusBarColor(Color.rgb(16, 42, 86));
         getWindow().setNavigationBarColor(Color.rgb(8, 19, 34));
-        localDb = new LocalDb();
+        localDb = new LocalDb(this);
         webView = new WebView(this);
         webView.setBackgroundColor(Color.rgb(8, 19, 34));
         webView.getSettings().setJavaScriptEnabled(true);
@@ -117,6 +123,10 @@ public class MainActivity extends FragmentActivity {
 
     @Override protected void onActivityResult(int code, int result, Intent intent) {
         super.onActivityResult(code, result, intent);
+        if (code == REQUEST_DRIVE_OPEN || code == REQUEST_DRIVE_CREATE) {
+            if (result == RESULT_OK && intent != null && intent.getData() != null) connectDriveFile(intent.getData(), intent.getFlags());
+            return;
+        }
         if (result != RESULT_OK || intent == null) return;
         Uri uri = intent.getData();
         try {
@@ -148,13 +158,89 @@ public class MainActivity extends FragmentActivity {
 
     private final class LocalBridge {
         @JavascriptInterface public String load() { return localDb.read(); }
-        @JavascriptInterface public boolean save(String json) { try { localDb.write(json); return true; } catch (Exception e) { return false; } }
+        @JavascriptInterface public boolean save(String json) { try { localDb.write(json); if (driveUri() != null) enqueueDriveBackup(MainActivity.this, 2); return true; } catch (Exception e) { return false; } }
+        @JavascriptInterface public String driveStatus() { return driveSyncPrefs().getString("status", driveUri() == null ? "DISCONNECTED" : "PENDING"); }
+        @JavascriptInterface public void checkDriveOnStart() { if (driveUri() != null) enqueueDriveBackup(MainActivity.this, 0); }
+        @JavascriptInterface public void openDriveSettings() { runOnUiThread(MainActivity.this::showDriveDialog); }
+        @JavascriptInterface public void resolveDriveConflict(boolean useDriveCopy) {
+            driveSyncPrefs().edit().putString("resolution", useDriveCopy ? "drive" : "phone").putString("status", "PENDING").apply();
+            enqueueDriveBackup(MainActivity.this, 0);
+        }
         @JavascriptInterface public void openImport() {
             runOnUiThread(() -> { Intent i = new Intent(Intent.ACTION_OPEN_DOCUMENT); i.setType("*/*"); i.putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"text/csv", "application/json", "text/plain"}); i.addCategory(Intent.CATEGORY_OPENABLE); startActivityForResult(i, REQUEST_IMPORT); });
         }
         @JavascriptInterface public void exportFile(String json) {
             runOnUiThread(() -> { exportContents = json; Intent i = new Intent(Intent.ACTION_CREATE_DOCUMENT); i.setType("application/json"); i.putExtra(Intent.EXTRA_TITLE, "gestor-financeiro-backup.json"); i.addCategory(Intent.CATEGORY_OPENABLE); startActivityForResult(i, REQUEST_EXPORT); });
         }
+    }
+    private android.content.SharedPreferences driveSyncPrefs() { return getSharedPreferences("drive_backup", MODE_PRIVATE); }
+    private Uri driveUri() {
+        String saved = driveSyncPrefs().getString("uri", "");
+        return saved.isEmpty() ? null : Uri.parse(saved);
+    }
+    private static void enqueueDriveBackup(android.content.Context context, long delaySeconds) {
+        android.content.SharedPreferences prefs = context.getSharedPreferences("drive_backup", MODE_PRIVATE);
+        if (prefs.getString("uri", "").isEmpty()) return;
+        prefs.edit().putString("status", "PENDING").apply();
+        androidx.work.Constraints constraints = new androidx.work.Constraints.Builder()
+            .setRequiredNetworkType(androidx.work.NetworkType.CONNECTED).build();
+        OneTimeWorkRequest request = new OneTimeWorkRequest.Builder(DriveBackupWorker.class)
+            .setConstraints(constraints).setInitialDelay(delaySeconds, TimeUnit.SECONDS)
+            .setBackoffCriteria(androidx.work.BackoffPolicy.EXPONENTIAL, 30, TimeUnit.SECONDS).build();
+        WorkManager.getInstance(context).enqueueUniqueWork("financeiro-drive-backup", ExistingWorkPolicy.APPEND_OR_REPLACE, request);
+    }
+    private void showDriveDialog() {
+        boolean connected = driveUri() != null;
+        String status = driveSyncPrefs().getString("status", connected ? "PENDING" : "DISCONNECTED");
+        if ("CONFLICT".equals(status)) {
+            new AlertDialog.Builder(this).setTitle("Conflito entre as cópias")
+                .setMessage("O telefone e o Google Drive foram alterados desde a última sincronização. Ambas as cópias foram preservadas. Qual deseja manter como principal?")
+                .setPositiveButton("Restaurar do Drive", (d, w) -> resolveDriveConflict(true))
+                .setNegativeButton("Manter telefone", (d, w) -> resolveDriveConflict(false)).show();
+            return;
+        }
+        String[] options = connected
+            ? new String[]{"Sincronizar agora", "Trocar arquivo de backup", "Desconectar Drive"}
+            : new String[]{"Selecionar backup existente", "Criar arquivo de backup no Drive"};
+        new AlertDialog.Builder(this).setTitle("Backup automático no Google Drive")
+            .setMessage(connected ? "O app verifica este arquivo ao abrir e salva nele as alterações quando há conexão. Situação: " + status : "Escolha Google Drive no seletor do Android. O vínculo é feito uma vez; o app continua funcionando offline.")
+            .setItems(options, (d, which) -> {
+                if (connected && which == 0) enqueueDriveBackup(this, 0);
+                else if (connected && which == 1) pickDriveFile(false);
+                else if (connected) disconnectDrive();
+                else pickDriveFile(which == 1);
+            }).setNegativeButton("Fechar", null).show();
+    }
+    private void pickDriveFile(boolean create) {
+        Intent intent = new Intent(create ? Intent.ACTION_CREATE_DOCUMENT : Intent.ACTION_OPEN_DOCUMENT);
+        intent.setType("application/json"); intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+        if (create) { intent.putExtra(Intent.EXTRA_TITLE, "Gestor Financeiro backup.json"); startActivityForResult(intent, REQUEST_DRIVE_CREATE); }
+        else startActivityForResult(intent, REQUEST_DRIVE_OPEN);
+    }
+    private void connectDriveFile(Uri uri, int resultFlags) {
+        int flags = resultFlags & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        if ((flags & Intent.FLAG_GRANT_READ_URI_PERMISSION) == 0 || (flags & Intent.FLAG_GRANT_WRITE_URI_PERMISSION) == 0) {
+            Toast.makeText(this, "Escolha um arquivo JSON com permissão de leitura e gravação.", Toast.LENGTH_LONG).show(); return;
+        }
+        try {
+            getContentResolver().takePersistableUriPermission(uri, flags);
+            driveSyncPrefs().edit().putString("uri", uri.toString()).remove("base_hash").remove("resolution").putString("status", "PENDING").apply();
+            enqueueDriveBackup(this, 0);
+            Toast.makeText(this, "Drive conectado. Verificando o backup…", Toast.LENGTH_LONG).show();
+        } catch (Exception e) { Toast.makeText(this, "Não consegui manter o acesso a este arquivo. Escolha outro arquivo do Drive.", Toast.LENGTH_LONG).show(); }
+    }
+    private void disconnectDrive() {
+        Uri old = driveUri();
+        if (old != null) {
+            try { getContentResolver().releasePersistableUriPermission(old, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION); }
+            catch (Exception ignored) { }
+        }
+        driveSyncPrefs().edit().remove("uri").remove("base_hash").remove("resolution").putString("status", "DISCONNECTED").apply();
+    }
+    private void resolveDriveConflict(boolean useDriveCopy) {
+        driveSyncPrefs().edit().putString("resolution", useDriveCopy ? "drive" : "phone").putString("status", "PENDING").apply();
+        enqueueDriveBackup(this, 0);
     }
     private final class VoiceBridge {
         @JavascriptInterface public void startSpeechRecognition() { runOnUiThread(MainActivity.this::startVoiceRecognition); }
@@ -169,22 +255,33 @@ public class MainActivity extends FragmentActivity {
             if (webView != null) webView.setBackgroundColor(Color.rgb(8, 19, 34));
         }); }
     }
-    private final class LocalDb extends SQLiteOpenHelper {
-        LocalDb() { super(MainActivity.this, "gestor_financeiro.db", null, 1); }
+    static final class LocalDb extends SQLiteOpenHelper {
+        LocalDb(android.content.Context context) { super(context, "gestor_financeiro.db", null, 1); }
         @Override public void onCreate(SQLiteDatabase db) { db.execSQL("CREATE TABLE state (id INTEGER PRIMARY KEY CHECK(id=1), payload TEXT NOT NULL)"); }
         @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
-        synchronized String read() {
-            try (Cursor c = getReadableDatabase().rawQuery("SELECT payload FROM state WHERE id=1", null)) {
-                if (c.moveToFirst()) return c.getString(0);
+        String read() {
+            synchronized (LocalDb.class) {
+                try (Cursor c = getReadableDatabase().rawQuery("SELECT payload FROM state WHERE id=1", null)) {
+                    if (c.moveToFirst()) return c.getString(0);
+                }
+                return "{\"lancamentos\":[],\"categorias\":[],\"contas\":[],\"cartoes\":[]}";
             }
-            return "{\"lancamentos\":[],\"categorias\":[],\"contas\":[],\"cartoes\":[]}";
         }
-        synchronized void write(String json) {
-            JSONObject data;
-            try { data = new JSONObject(json); } catch (Exception e) { throw new IllegalArgumentException("Dados locais inválidos."); }
-            for (String key : new String[]{"lancamentos", "categorias", "contas", "cartoes"}) if (!(data.opt(key) instanceof org.json.JSONArray)) throw new IllegalArgumentException("Estrutura local inválida.");
-            ContentValues values = new ContentValues(); values.put("id", 1); values.put("payload", json);
-            getWritableDatabase().insertWithOnConflict("state", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        boolean replaceIfCurrent(String expected, String replacement) {
+            synchronized (LocalDb.class) {
+                if (!read().equals(expected)) return false;
+                write(replacement);
+                return true;
+            }
+        }
+        void write(String json) {
+            synchronized (LocalDb.class) {
+                JSONObject data;
+                try { data = new JSONObject(json); } catch (Exception e) { throw new IllegalArgumentException("Dados locais inválidos."); }
+                for (String key : new String[]{"lancamentos", "categorias", "contas", "cartoes"}) if (!(data.opt(key) instanceof org.json.JSONArray)) throw new IllegalArgumentException("Estrutura local inválida.");
+                ContentValues values = new ContentValues(); values.put("id", 1); values.put("payload", json);
+                getWritableDatabase().insertWithOnConflict("state", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+            }
         }
     }
     @Override protected void onDestroy() {
