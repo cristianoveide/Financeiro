@@ -74,7 +74,7 @@ public class MainActivity extends FragmentActivity {
                 });
             }
         });
-        if (getSharedPreferences("security", MODE_PRIVATE).getBoolean("biometric_required", true)) {
+        if (getSharedPreferences("security", MODE_PRIVATE).getBoolean("biometric_required", false)) {
             authenticateToOpen();
         } else {
             authenticated = true;
@@ -157,7 +157,7 @@ public class MainActivity extends FragmentActivity {
     private final class LocalBridge {
         @JavascriptInterface public String load() { return localDb.read(); }
         @JavascriptInterface public boolean save(String json) { try { localDb.write(json); if (isDriveConnected()) enqueueDriveBackup(MainActivity.this, 2); return true; } catch (Exception e) { return false; } }
-        @JavascriptInterface public boolean isBiometricRequired() { return getSharedPreferences("security", MODE_PRIVATE).getBoolean("biometric_required", true); }
+        @JavascriptInterface public boolean isBiometricRequired() { return getSharedPreferences("security", MODE_PRIVATE).getBoolean("biometric_required", false); }
         @JavascriptInterface public void setBiometricRequired(boolean required) { getSharedPreferences("security", MODE_PRIVATE).edit().putBoolean("biometric_required", required).apply(); }
         @JavascriptInterface public String driveStatus() { return driveSyncPrefs().getString("status", isDriveConnected() ? "PENDING" : "DISCONNECTED"); }
         @JavascriptInterface public void checkDriveOnStart() {
